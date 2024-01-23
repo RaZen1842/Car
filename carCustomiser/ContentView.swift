@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    let car = Car(make: "Mazda", model: "MX-5", topSpeed: 125, acceleration: 7.7, handling: 5)
+    
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        Text("Make: \(car.make)")
+        Text("Model: \(car.model)")
+        Text("Top Speed: \(car.topSpeed)mph")
+        Text("Acceleration (0-60): \(car.acceleration)s")
+        Text("Handling: \(car.handling)")
+        
+            .multilineTextAlignment(.center)
+
+
     }
 }
 
