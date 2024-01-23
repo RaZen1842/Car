@@ -18,6 +18,44 @@ struct ContentView: View {
     @State private var remainingFunds = 1000
     
     
+    var exhaustPackageEnabled: Bool {
+        if remainingFunds <= 0 {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    var tiresPackageEnabled: Bool {
+        if remainingFunds <= 0 {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    var drivetrainPackageEnabled: Bool {
+        if remainingFunds <= 0 {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    var ecuFuelPackageEnabled: Bool {
+        if remainingFunds <= 0 {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    
+    
     
     var body: some View {
         
@@ -97,19 +135,32 @@ struct ContentView: View {
                         if selectedCar == self.starterCars.cars.count {
                             selectedCar = 0
                         }
+                        resetDisplay()
                     })
                 }
                 Section {
                     Toggle("Exhaust Package (Cost: 500)", isOn: exhaustPackageBinding)
+                        .disabled(!exhaustPackageEnabled)
                     Toggle("Tires Package (Cost: 500)", isOn: tiresPackageBinding)
+                        .disabled(!tiresPackageEnabled)
                     Toggle("Drivetrain Package (Cost: 300)", isOn: drivetrainPackageBinding)
+                        .disabled(!drivetrainPackageEnabled)
                     Toggle("ECU & Fuel Package (Cost: 1000)", isOn: ecuFuelPackageBinding)
+                        .disabled(!ecuFuelPackageEnabled)
                 }
             }
             Text("Remaining Funds: \(remainingFunds)")
                 .foregroundColor(.red)
                 .baselineOffset(20)
         }
+    }
+    func resetDisplay() {
+        remainingFunds = 1000
+        exhaustPackage = false
+        tiresPackage = false
+        drivetrainPackage = false
+        ecuFuelPackage = false
+        starterCars = StarterCars()
     }
 }
 
