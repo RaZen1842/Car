@@ -151,17 +151,17 @@ struct ContentView: View {
                     })
                 }
                 Section {
-                    Toggle("Exhaust Package (Cost: 500)", isOn: exhaustPackageBinding)
+                    Toggle("Exhaust Package (Cost: $500)", isOn: exhaustPackageBinding)
                         .disabled(!exhaustPackageEnabled)
-                    Toggle("Tires Package (Cost: 500)", isOn: tiresPackageBinding)
+                    Toggle("Tires Package (Cost: $500)", isOn: tiresPackageBinding)
                         .disabled(!tiresPackageEnabled)
-                    Toggle("Drivetrain Package (Cost: 300)", isOn: drivetrainPackageBinding)
+                    Toggle("Drivetrain Package (Cost: $300)", isOn: drivetrainPackageBinding)
                         .disabled(!drivetrainPackageEnabled)
-                    Toggle("ECU & Fuel Package (Cost: 1000)", isOn: ecuFuelPackageBinding)
+                    Toggle("ECU & Fuel Package (Cost: $1000)", isOn: ecuFuelPackageBinding)
                         .disabled(!ecuFuelPackageEnabled)
                 }
             }
-            Text("Remaining Funds: \(remainingFunds)")
+            Text("Remaining Funds: $\(remainingFunds)")
                 .foregroundColor(.red)
                 .baselineOffset(20)
         }
