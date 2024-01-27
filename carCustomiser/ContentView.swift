@@ -19,39 +19,51 @@ struct ContentView: View {
     
     
     var exhaustPackageEnabled: Bool {
-        if remainingFunds <= 0 {
-            return false
+        if remainingFunds < 500 {
+            if self.exhaustPackage != true {
+                return false
+            }
         }
         else {
             return true
         }
+        return true
     }
     
     var tiresPackageEnabled: Bool {
-        if remainingFunds <= 0 {
-            return false
+        if remainingFunds < 500 {
+            if self.tiresPackage != true {
+                return false
+            }
         }
         else {
             return true
         }
+        return true
     }
     
     var drivetrainPackageEnabled: Bool {
-        if remainingFunds <= 0 {
-            return false
+        if remainingFunds < 300 {
+            if self.drivetrainPackage != true {
+                return false
+            }
         }
         else {
             return true
         }
+        return true
     }
     
     var ecuFuelPackageEnabled: Bool {
-        if remainingFunds <= 0 {
-            return false
+        if remainingFunds < 1000 {
+            if self.ecuFuelPackage != true {
+                return false
+            }
         }
         else {
             return true
         }
+        return true
     }
     
     
