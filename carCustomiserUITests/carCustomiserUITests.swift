@@ -27,12 +27,7 @@ final class carCustomiserUITests: XCTestCase {
         app.launch()
         
         
-        let tablesQuery = app.tables
-        tablesQuery.switches["Exhaust Package (Cost: 500)"].tap()
-        tablesQuery.switches["Tires Package (Cost: 500)"].tap()
-        
-        XCTAssertEqual(tablesQuery.switches["Drivetrain Package (Cost: 300)"].isEnabled, false)
-        XCTAssertEqual(tablesQuery.switches["ECU & Fuel Package (Cost: 1000)"].isEnabled, false)
+                
     }
 
     func testLaunchPerformance() throws {

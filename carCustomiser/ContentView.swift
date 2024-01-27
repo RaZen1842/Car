@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var drivetrainPackage = false
     @State private var ecuFuelPackage = false
     @State private var remainingFunds = 1000
+    @State private var remainingTime = 30
     
     
     var exhaustPackageEnabled: Bool {
@@ -24,10 +25,12 @@ struct ContentView: View {
                 return false
             }
         }
+        if remainingTime == 0 {
+            return false
+        }
         else {
             return true
         }
-        return true
     }
     
     var tiresPackageEnabled: Bool {
@@ -36,10 +39,12 @@ struct ContentView: View {
                 return false
             }
         }
+        if remainingTime == 0 {
+            return false
+        }
         else {
             return true
         }
-        return true
     }
     
     var drivetrainPackageEnabled: Bool {
@@ -48,10 +53,12 @@ struct ContentView: View {
                 return false
             }
         }
+        if remainingTime == 0 {
+            return false
+        }
         else {
             return true
         }
-        return true
     }
     
     var ecuFuelPackageEnabled: Bool {
@@ -60,12 +67,28 @@ struct ContentView: View {
                 return false
             }
         }
+        if remainingTime == 0 {
+            return false
+        }
         else {
             return true
         }
-        return true
     }
     
+    
+    
+    var timerNotExpired: Bool {
+        if remainingTime == 0 {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     
     
@@ -138,7 +161,13 @@ struct ContentView: View {
         )
         
         VStack {
-            
+            Text("\(remainingTime)")
+                .onReceive(timer) { _ in
+                    if self.remainingTime > 0 {
+                        self.remainingTime -= 1
+                    }
+                }
+                .foregroundColor(.red)
             Form {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("\(starterCars.cars[selectedCar].displayStats())")
@@ -149,6 +178,7 @@ struct ContentView: View {
                         }
                         resetDisplay()
                     })
+                    .disabled(!timerNotExpired)
                 }
                 Section {
                     Toggle("Exhaust Package (Cost: $500)", isOn: exhaustPackageBinding)
